@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { GoogleGenAI, Type } from '@google/genai'; // 1. Imported 'Type' for structured schema
+import { GoogleGenAI, Type } from '@google/genai';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
@@ -9,13 +9,14 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: [
+    'http://localhost:5173', 
+    'https://culinary-api-backend-zgwt.onrender.com'
+  ]
 }));
 
 app.use(express.json());
 
-// Initialize the Gemini client. 
-// Note: It will automatically look for process.env.GEMINI_API_KEY
 const ai = new GoogleGenAI({});
 
 app.post('/api/baking-assistant', async (req: Request, res: Response): Promise<void> => {
@@ -35,7 +36,6 @@ app.post('/api/baking-assistant', async (req: Request, res: Response): Promise<v
         Your mission is to help users cook five-star meals using clear, step-by-step instructions optimized for smartphones and PCs. 
         Break down elite culinary techniques into simple, highly precise actions.`,
         
-        // 2. Enforce Strict JSON Output via the API Config
         responseMimeType: "application/json",
         responseSchema: {
           type: Type.OBJECT,
@@ -62,14 +62,12 @@ app.post('/api/baking-assistant', async (req: Request, res: Response): Promise<v
       }
     });
 
-    // 3. Safely extract the generated JSON string
     const jsonText = response.text;
 
     if (!jsonText) {
       throw new Error('No content returned from Gemini.');
     }
 
-    // Send the result string to the client (matching your frontend's expected data.result payload)
     res.json({ result: jsonText });
 
   } catch (error) {
