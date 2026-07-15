@@ -53,7 +53,6 @@ A modern, responsive, full-stack application that transforms elite, five-star cu
 * A **Google Gemini API Key** (Get one from [Google AI Studio](https://aistudio.google.com/))
 
 ### 1. Clone the Repository
-```bash
 git clone https://github.com/FranciscoAguero247/culinary-api.git
 cd culinary-api
 
@@ -61,32 +60,32 @@ cd culinary-api
 (Assuming your backend is in the server/ directory of your workspace)
 Navigate into the server folder, install packages, and create your environment variables:
 
-```bash
+```
 cd server
 npm install
-
+```
 Create a ```.env file in the ```server directory:
-```bash
+```
 PORT=5000
 GEMINI_API_KEY=your_gemini_api_key_here
-
+```
 Run the local backend:
 
-```bash
+```
 npm run dev
-
+```
 ### 3. Configure Frontend Client
 Open a second terminal, navigate into your client directory (```/client), install packages, and run Vite:
-```bash
+```
 cd client
 npm install
-
+```
 Create a ```.env file in the ```client directory to point to your local Express server:
-```bash
+```
 VITE_API_BASE_URL=http://localhost:5000
-
+```
 Run the development server:
-```bash
+```
 npm run dev
-
+```
 The application will run locally at http://localhost:5173, dynamically fetching secure data from your Express backend running at 
