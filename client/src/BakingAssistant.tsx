@@ -18,13 +18,14 @@ export const CulinaryAssistant: React.FC = () => {
   const [checkedIngredients, setCheckedIngredients] = useState<Record<number, boolean>>({});
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://culinary-api-backend-zgwt.onrender.com';
     e.preventDefault();
     if (!prompt.trim()) return;
 
     setLoading(true);
     setCheckedIngredients({});
     try {
-      const res = await fetch('http://localhost:5000/api/baking-assistant', {
+      const res = await fetch(`${API_BASE_URL}/api/baking-assistant`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt }),
