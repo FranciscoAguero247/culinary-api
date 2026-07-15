@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173', 
-    'https://culinary-api-backend-zgwt.onrender.com'
+    'https://culinary-api-frontend.onrender.com'
   ]
 }));
 
