@@ -21,12 +21,14 @@ A modern, responsive, full-stack application that transforms elite, five-star cu
 
 ### Frontend (Client)
 * **React 18** with **TypeScript** for predictable, type-safe UI building.
+* **React 19** with **TypeScript** for predictable, type-safe UI building.
 * **Vite** for optimized, high-performance module bundling.
 * Clean, responsive, vanilla CSS layouts built for readability.
 
 ### Backend (Server)
 * **Node.js** with **Express** & **TypeScript** (`ts-node-dev` in development).
 * **Google Gen AI SDK (`@google/genai`)** interacting with the optimized `gemini-2.5-flash` model.
+* **Google Gen AI SDK (`@google/genai`)** interacting with the optimized `gemini-3.7-flash` model via the modern Interactions API.
 * **CORS** configuration to safely bridge cross-origin environments.
 
           ┌──────────────────────┐

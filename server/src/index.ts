@@ -1,6 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import { GoogleGenAI, Type } from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
@@ -44,6 +45,35 @@ app.post('/api/baking-assistant', async (req: Request, res: Response): Promise<v
             difficulty: { 
               type: Type.STRING, 
               enum: ["Easy", "Medium", "Advanced"] 
+    const interaction = await ai.interactions.create({
+      model: 'gemini-3.7-flash',
+      input: prompt,
+      system_instruction: `You are a world-class, Michelin-starred executive chef. 
+      Your mission is to help users cook five-star meals using clear, step-by-step instructions optimized for smartphones and PCs. 
+      Break down elite culinary techniques into simple, highly precise actions.`,
+      response_format: [
+        {
+          type: 'text',
+          mime_type: 'application/json',
+          schema: {
+            type: 'object',
+            properties: {
+              recipeName: { type: 'string' },
+              difficulty: { 
+                type: 'string', 
+                enum: ['Easy', 'Medium', 'Advanced'] 
+              },
+              prepTime: { type: 'string' },
+              cookTime: { type: 'string' },
+              chefTip: { type: 'string' },
+              ingredients: {
+                type: 'array',
+                items: { type: 'string' }
+              },
+              instructions: {
+                type: 'array',
+                items: { type: 'string' }
+              }
             },
             prepTime: { type: Type.STRING },
             cookTime: { type: Type.STRING },
@@ -58,11 +88,15 @@ app.post('/api/baking-assistant', async (req: Request, res: Response): Promise<v
             }
           },
           required: ["recipeName", "difficulty", "prepTime", "cookTime", "chefTip", "ingredients", "instructions"]
+            required: ['recipeName', 'difficulty', 'prepTime', 'cookTime', 'chefTip', 'ingredients', 'instructions']
+          }
         }
       }
+      ]
     });
 
     const jsonText = response.text;
+    const jsonText = interaction.output_text;
 
     if (!jsonText) {
       throw new Error('No content returned from Gemini.');
