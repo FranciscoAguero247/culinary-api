@@ -55,13 +55,13 @@ export const CulinaryAssistant: React.FC = () => {
           Culinary<span style={{ color: '#e11d48' }}>API</span>
         </h1>
         <p style={{ color: '#64748b', fontSize: '1.1rem', margin: 0 }}>
-          Transforming elite techniques into five-star home execution.
+          Turning five-star meals to simple home cooked, easy to follow meals.
         </p>
       </header>
       
       <form onSubmit={handleSubmit} style={{ background: '#ffffff', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(15, 23, 42, 0.05)', border: '1px solid #f1f5f9', marginBottom: '32px' }}>
         <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155', fontSize: '0.9rem', textTransform: 'uppercase' }}>
-          What are we crafting tonight?
+          What's cooking?
         </label>
         <textarea
           value={prompt}
@@ -75,7 +75,7 @@ export const CulinaryAssistant: React.FC = () => {
           disabled={loading}
           style={{ width: '100%', padding: '14px', marginTop: '16px', backgroundColor: '#0f172a', color: '#ffffff', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 600, fontSize: '1rem', transition: 'background-color 0.2s shadow 0.2s' }}
         >
-          {loading ? 'Analyzing Flavor Matrices...' : 'Generate 5-Star Protocol'}
+          {loading ? 'Analyzing Flavor Matrices...' : "Let's start cooking!"}
         </button>
       </form>
 
