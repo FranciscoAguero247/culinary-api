@@ -20,7 +20,6 @@ A modern, responsive, full-stack application that transforms elite, five-star cu
 ## 🛠️ Tech Stack & Architecture
 
 ### Frontend (Client)
-* **React 18** with **TypeScript** for predictable, type-safe UI building.
 * **React 19** with **TypeScript** for predictable, type-safe UI building.
 * **Vite** for optimized, high-performance module bundling.
 * Clean, responsive, vanilla CSS layouts built for readability.
